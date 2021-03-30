@@ -7,10 +7,10 @@ VM_SIZE=Standard_B8ms
 
 #create the VM and open ports
 echo "Creating resource group"
-az group create -n $RG
+az group create -n $RG -l $REGION
 
 echo "Creating VM.."
-az vm create -g $RG --image UbuntuLTS --size ${VM_SIZE} --admin-username ubuntu --ssh-key-values ~/.ssh/id_rsa.pub -n $RG --public-ip-address-dns-name $DNS_NAME --custom-data install-k3d.sh -l westeurope
+az vm create -g $RG --image UbuntuLTS --size ${VM_SIZE} --admin-username ubuntu --ssh-key-values ~/.ssh/id_rsa.pub -n $RG --public-ip-address-dns-name $DNS_NAME --custom-data install-k3d.sh -l $REGION
 echo "..done!"
 
 echo "Setting network rules.."
